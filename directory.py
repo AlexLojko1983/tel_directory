@@ -12,11 +12,11 @@ def open_file(path='phone.txt'):
 
 def print_contact(book: dict[int, dict], message: str = 'Справочник загружен!!!'):
     print(message)
-    print('-' * 50)
+    print('-' * 60)
     for i, con in book.items():
-        str_con = f'{i:>2}.{con.get("name"):<20}:{con.get("phone"):<20}:{con.get("comment"):<20}'
+        str_con = f'{i:>2}. {con.get("name"):<20}:{con.get("phone"):<15}:{con.get("comment"):<20}'
         print(str_con)
-    print('-' * 50)
+    print('-' * 60)
 
 
 def add_contact(book: dict[int, dict]):
@@ -30,7 +30,20 @@ def find_contact(book: dict[int, dict]):
     for i, con in book.items():
         if self.lower() in ' '.join(list(con.values())).lower():
             res[i] = con
-    print_contact(res, 'Возможно вы искали!!')
+    return res
+
+
+def remove_contact(book: dict[int, dict]):
+    id_con = int(input('Введите Ид контакта, который надо удалить: '))
+    if min(book.keys()) <= id_con <= max(book.keys()):
+        book.pop(id_con)
+        print_contact(book, 'Остались контакты !!!')
+    else:
+        print('Такого контакта нет')
+
+def save_contact():
+    pass
+
 
 
 def menu():
@@ -59,11 +72,11 @@ while True:
         case 2:
             add_contact(open_file())
         case 3:
-            find_contact(open_file())
+            print_contact(find_contact(open_file()), 'Возможно вы искали?')
         case 4:
             pass
         case 5:
-            pass
+            remove_contact(open_file())
         case 6:
             pass
         case 7:
