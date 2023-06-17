@@ -10,18 +10,28 @@ def open_file(path='phone.txt'):
     return new_book
 
 
-def print_contact(book: dict[int, dict]):
-    print('Справочник загружен!!!')
+def print_contact(book: dict[int, dict], message: str = 'Справочник загружен!!!'):
+    print(message)
     print('-' * 50)
     for i, con in book.items():
-        str_con = f'{i}.{con.get("name")}:{con.get("phone")}:{con.get("comment")}'
+        str_con = f'{i:>2}.{con.get("name"):<20}:{con.get("phone"):<20}:{con.get("comment"):<20}'
         print(str_con)
     print('-' * 50)
 
 
 def add_contact(book: dict[int, dict]):
     book[max(book.keys()) + 1] = {'name': input('Введите ФИО: '),
-                                  'phone': input('Введите номер телефона: '), 'comment':input('Комментарий: ')}
+                                  'phone': input('Введите номер телефона: '), 'comment': input('Комментарий: ')}
+
+
+def find_contact(book: dict[int, dict]):
+    res = {}
+    self = input('Введите параметр поиска: ')
+    for i, con in book.items():
+        if self.lower() in ' '.join(list(con.values())).lower():
+            res[i] = con
+    print_contact(res, 'Возможно вы искали!!')
+
 
 def menu():
     menu = '''Главное меню
@@ -40,6 +50,7 @@ def menu():
             return int(choice)
         print('Выберите все таки действие: ')
 
+
 while True:
     choice = menu()
     match choice:
@@ -48,7 +59,7 @@ while True:
         case 2:
             add_contact(open_file())
         case 3:
-            pass
+            find_contact(open_file())
         case 4:
             pass
         case 5:
