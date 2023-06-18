@@ -5,8 +5,8 @@ def open_file(path='phone.txt'):
     with open(path, 'r', encoding='UTF-8') as file:
         data = file.readlines()
         for con in data:
-            nc = con.strip().split(':')
-            new_book[int(nc[0])] = {'name': nc[1], 'phone': nc[2], 'comment': nc[3]}
+            new_con = con.strip().split(':')
+            new_book[int(new_con[0])] = {'name': new_con[1], 'phone': new_con[2], 'comment': new_con[3]}
     return new_book
 
 
@@ -14,7 +14,7 @@ def print_contact(book: dict[int, dict], message: str = 'Справочник з
     print(message)
     print('-' * 60)
     for i, con in book.items():
-        str_con = f'{i:>2}. {con.get("name"):<20}:{con.get("phone"):<15}:{con.get("comment"):<20}'
+        str_con = f'{i:>2}.{con.get("name"):<20}:{con.get("phone"):<15}:{con.get("comment"):<20}'
         print(str_con)
     print('-' * 60)
 
@@ -38,12 +38,24 @@ def remove_contact(book: dict[int, dict]):
     if min(book.keys()) <= id_con <= max(book.keys()):
         book.pop(id_con)
         print_contact(book, 'Остались контакты !!!')
+        print('Сохраните справочник!!')
     else:
         print('Такого контакта нет')
 
-def save_contact():
-    pass
 
+def save_contact(path='phone.txt'):
+    with open(path, 'w', encoding='UTF-8') as file:
+        for i, con in new_book.items():
+            str_con = f'{str(i)}:{con.get("name")}:{con.get("phone")}:{con.get("comment")}\n'
+            file.write(str_con)
+
+
+def update_contact(book: dict[int, dict]):
+    id_con = int(input('Введите ИД контакта который будем изменять: '))
+    book[id_con] = {'name': input('Введите ФИО: '),
+                    'phone': input('Введите номер телефона: '),
+                    'comment': input('Комментарий: ')
+                    }
 
 
 def menu():
@@ -74,11 +86,11 @@ while True:
         case 3:
             print_contact(find_contact(open_file()), 'Возможно вы искали?')
         case 4:
-            pass
+            update_contact(open_file())
         case 5:
             remove_contact(open_file())
         case 6:
-            pass
+            save_contact()
         case 7:
-            print('До новых встреч')
+            print('Еще увидимся!!')
             break
