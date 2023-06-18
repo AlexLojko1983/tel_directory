@@ -6,7 +6,10 @@ def open_file(path='phone.txt'):
         data = file.readlines()
         for con in data:
             new_con = con.strip().split(':')
-            new_book[int(new_con[0])] = {'name': new_con[1], 'phone': new_con[2], 'comment': new_con[3]}
+            new_book[int(new_con[0])] = {'name': new_con[1],
+                                         'phone': new_con[2],
+                                         'comment': new_con[3]
+                                         }
     return new_book
 
 
