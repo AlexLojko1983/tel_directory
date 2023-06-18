@@ -21,7 +21,9 @@ def print_contact(book: dict[int, dict], message: str = 'Справочник з
 
 def add_contact(book: dict[int, dict]):
     book[max(book.keys()) + 1] = {'name': input('Введите ФИО: '),
-                                  'phone': input('Введите номер телефона: '), 'comment': input('Комментарий: ')}
+                                  'phone': input('Введите номер телефона: '),
+                                  'comment': input('Комментарий: ')
+                                  }
 
 
 def find_contact(book: dict[int, dict]):
@@ -59,7 +61,7 @@ def update_contact(book: dict[int, dict]):
 
 
 def menu():
-    menu = '''Главное меню
+    menu_directory = '''Главное меню
     1. Открыть справочник
     2. Добавить контакт
     3. Найти контакт
@@ -67,7 +69,7 @@ def menu():
     5. Удалить контакт
     6. Сохранить справочник
     7. Выйти'''
-    print(menu)
+    print(menu_directory)
 
     while True:
         choice = input('Выберите действие: ')
