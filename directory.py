@@ -1,21 +1,27 @@
 import funk, txt
+import model
+import view
 
-if __name__ == '__main__':
+
+def start():
     while True:
-        choice = funk.menu()
+        choice = view.menu()
         match choice:
             case 1:
-                funk.print_contact(funk.open_file())
+                model.open_file()
             case 2:
-                funk.add_contact(funk.open_file())
+                view.print_contact(model.new_book, txt.find_message_2)
             case 3:
-                funk.print_contact(funk.find_contact(funk.open_file()), txt.find_message_1)
+                book = view.add_contact()
+                model.add_contact(book)
             case 4:
                 funk.update_contact(funk.open_file())
             case 5:
                 funk.remove_contact(funk.open_file())
             case 6:
-                funk.save_contact()
+                pass
             case 7:
+                model.save_contact()
+            case 8:
                 print(txt.exit_message)
                 break
