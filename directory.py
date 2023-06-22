@@ -8,20 +8,36 @@ def start():
         choice = view.menu()
         match choice:
             case 1:
-                model.open_file()
+                if model.open_file():
+                    view.print_message(txt.message_print)
+                else:
+                    view.print_message(txt.message_print_err)
             case 2:
                 view.print_contact(model.new_book, txt.find_message_2)
             case 3:
                 book = view.add_contact()
                 model.add_contact(book)
+                view.print_message(txt.add_successful(book.get('name')))
             case 4:
-                funk.update_contact(funk.open_file())
+                word = view.find_word()
+                result = model.find_contact(word)
+                view.print_contact(result, txt.find_message_1)
             case 5:
-                funk.remove_contact(funk.open_file())
+                book = view.add_contact()
+                number = view.delete_contact()
+                model.update_contact(book,number)
             case 6:
-                pass
+                number = view.delete_contact()
+                if model.delete_contact(number):
+                    view.print_message(txt.del_message)
+                else:
+                    view.print_message(txt.not_del_message)
             case 7:
-                model.save_contact()
+                if model.save_contact():
+                    view.print_message(txt.download_directory)
+                else:
+                    view.print_message(txt.err_download_directory)
+
             case 8:
-                print(txt.exit_message)
+                view.print_message(txt.exit_message)
                 break

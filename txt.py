@@ -13,6 +13,7 @@ choice_menu = 'Выберите действие: '
 choice_error = f'Такого действия нет!!! Введите число от 1 до {len(menu) - 1}'
 
 message_print = 'Справочник загружен!!!'
+message_print_err = 'Ошибка загрузки!'
 message_remove = 'Остались контакты !!!'
 
 new_contact = {'name': 'Введите ФИО: ',
@@ -20,15 +21,23 @@ new_contact = {'name': 'Введите ФИО: ',
                'comment': 'Комментарий: '}
 
 find_word = 'Введите параметр поиска: '
-find_message_1 = 'Возможно вы искали?'
+find_message_1 = 'Контакты не найдены'
 find_message_2 = 'Список пуст!!'
 
 delete_id = 'Введите Ид контакта, который надо удалить: '
 
-download_directory = 'Сохраните справочник!!'
+download_directory = 'Справочник сохранен!!'
+err_download_directory = 'Ошибка сохранения'
 
 error_contact = 'Такого контакта нет'
 
 update_id = 'Введите ИД контакта который будем изменять: '
 
 exit_message = 'Еще увидимся!!'
+
+
+def add_successful(name: str):
+    return f'Контакт {name} добавлен в книгу'
+
+del_message = 'Контакт успешно удален!'
+not_del_message = 'Такого ИД нет!'

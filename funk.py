@@ -43,13 +43,13 @@ def menu():
 #                                   }
 
 
-def find_contact(book: dict[int, dict]):
-    res = {}
-    self = input(txt.find_word)
-    for i, con in book.items():
-        if self.lower() in ' '.join(list(con.values())).lower():
-            res[i] = con
-    return res
+# def find_contact(book: dict[int, dict]):
+#     res = {}
+#     self = input(txt.find_word)
+#     for i, con in book.items():
+#         if self.lower() in ' '.join(list(con.values())).lower():
+#             res[i] = con
+#     return res
 
 
 def remove_contact(book: dict[int, dict]):
