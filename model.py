@@ -51,9 +51,5 @@ def delete_contact(number: str):
         return False
 
 
-def update_contact(book, number: str):
-    try:
-        new_book[number] = {book}
-        return True
-    except:
-        return False
+def update_contact(book: dict, number: str):
+    new_book[number] = book

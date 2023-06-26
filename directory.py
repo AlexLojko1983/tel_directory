@@ -23,9 +23,9 @@ def start():
                 result = model.find_contact(word)
                 view.print_contact(result, txt.find_message_1)
             case 5:
-                book = view.add_contact()
                 number = view.delete_contact()
-                model.update_contact(book,number)
+                book = view.add_contact()
+                model.update_contact(book, number)
             case 6:
                 number = view.delete_contact()
                 if model.delete_contact(number):
